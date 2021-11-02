@@ -24,3 +24,7 @@ class Ball(Turtle):
         if y==-1:
          self.y_move *= -1
 
+    def reset(self):
+        self.x_move = 10
+        self.y_move = 10
+        self.goto(0,0)

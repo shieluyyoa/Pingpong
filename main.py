@@ -1,13 +1,13 @@
 from turtle import Turtle,Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import sb
 import time
 
 
 pingpong = Turtle()
-
 paddle = Turtle()
-
+scoreboard = sb()
 
 pingpong_screen = Screen()
 pingpong_screen.setup(800,600)
@@ -48,8 +48,24 @@ while game_on:
     if new_ball.xcor() > 390 or new_ball.xcor() < -390:
         new_ball.bounce(-1,1)
     
-    if new_ball.distance(user_paddle) <= 58 and new_ball.xcor() >= 340 :
+
+    if new_ball.distance(user_paddle) < 58 and 360 > new_ball.xcor() > 340 :
         new_ball.bounce(-1,1)
+    
+    elif new_ball.distance(ai_paddle) < 58 and -360 < new_ball.xcor() <-340 :
+        new_ball.bounce(-1,1)
+
+
+    if new_ball.xcor() >= 390 :
+       
+        new_ball.reset()
+        new_ball.bounce(-1,-1)
+        scoreboard.ai()
+    elif new_ball.xcor() <= -390:
+   
+        new_ball.reset()
+        new_ball.bounce(1,1)
+        scoreboard.user()
 
     time.sleep(0.02)
 
